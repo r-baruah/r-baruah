@@ -1,168 +1,118 @@
 <div align="center">
   <h1>Ripuranjan Baruah</h1>
-  <p><b>Systems Architect & Strategic Technologist</b></p>
-  <p>Architecting robust, efficient systems for the next wave of automation.</p>
+  <h3>System Architect | Founder | R&D</h3>
+  <p>
+    <em>"Architecting high-leverage systems at the intersection of AI and Strategic Automation."</em>
+  </p>
   
   <p>
-    <a href="mailto:ripuranjanbaruah@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
-    <a href="https://github.com/Testinfd"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
-    <a href="https://discordapp.com/users/ripu0"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/></a>
+    <a href="mailto:ripuranjanbaruah@zohomail.in"><img src="https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=zoho&logoColor=white" alt="Email"/></a>
+    <a href="https://github.com/r-baruah"><img src="https://img.shields.io/badge/GitHub-Portfolio-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
+    <!-- HIDE THIS BUTTON UNTIL YOU HAVE 5 SOLVED PROBLEMS -->
+    <a href="https://codeforces.com/profile/YOUR_USERNAME"><img src="https://img.shields.io/badge/Codeforces-Competitive-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codeforces"/></a>
   </p>
 </div>
 
----
-
-## About Me
-
-I am a systems-focused builder who enjoys mapping out complex problems and translating them into clean, efficient code. My process is architecture-driven: I prioritize getting a deep understanding of the context and structure before development, but remain agile enough to refactor and pivot when a better, more efficient solution emerges.
-
-My current focus is on **AI and Automation** as a strategic area of growth. I am deliberately building expertise in this domain to design the highly leveraged, intelligent systems of the near future. For me, the ultimate satisfaction comes from creating something that is not only novel and creative, but also well-organized, useful, and demonstrably **correct**.
-
----
-
-## My Tech Stack
-
-<div align="center">
-  <p><strong>A selection of technologies I'm proficient with:</strong></p>
-  <table>
-    <tr>
-      <td align="center" colspan="3"><strong>Languages & Backend</strong></td>
-      <td align="center" colspan="3"><strong>Frontend & Data</strong></td>
-    </tr>
-    <tr>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=python" alt="Python" width="65" height="65" />
-        <br>Python
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=js" alt="JavaScript" width="65" height="65" />
-        <br>JavaScript
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" width="65" height="65" />
-        <br>TypeScript
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=react" alt="React" width="65" height="65" />
-        <br>React
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=postgres" alt="PostgreSQL" width="65" height="65" />
-        <br>PostgreSQL
-      </td>
-       <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=supabase" alt="Supabase" width="65" height="65" />
-        <br>Supabase
-      </td>
-    </tr>
-    <tr>
-      <td align="center" colspan="3"><strong>Frameworks & Infrastructure</strong></td>
-      <td align="center" colspan="3"><strong>Ops & Automation</strong></td>
-    </tr>
-    <tr>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=fastapi" alt="FastAPI" width="65" height="65" />
-        <br>FastAPI
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" width="65" height="65" />
-        <br>Node.js
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=express" alt="Express" width="65" height="65" />
-        <br>Express
-      </td>
-       <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=docker" alt="Docker" width="65" height="65" />
-        <br>Docker
-      </td>
-       <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=aws" alt="AWS" width="65" height="65" />
-        <br>AWS
-      </td>
-      <td align="center" width="96">
-        <img src="https://skillicons.dev/icons?i=githubactions" alt="GitHub Actions" width="65" height="65" />
-        <br>Actions
-      </td>
-    </tr>
-  </table>
-</div>
-
----
-
-## Selected Projects
+<br />
 
 <table>
-<tr>
-<td width="50%">
-<h3 align="center">GeoGuardian</h3>
-<div align="center">
-<p>A proof-of-concept security service using geographic and behavioral data to flag anomalous login attempts. Built to explore clean API design and data-driven decision-making.</p>
-<p>
-<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
-<img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-</p>
-<a href="https://github.com/Testinfd/GeoGuardian" target="_blank"><img src="https://img.shields.io/badge/View%20Code-181717?style=for-the-badge&logo=github&logoColor=white"></a>
-</div>
-</td>
-<td width="50%">
-<h3 align="center">ChessMaster</h3>
-<div align="center">
-<p>Telegram bot for managing/sharing chess courses, with features like multi-file handling, inline search, token verification, and premium tiers.</p>
-<p>
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-</p>
-<a href="https://github.com/r-baruah/Chess-Master" target="_blank"><img src="https://img.shields.io/badge/View%20Code-181717?style=for-the-badge&logo=github&logoColor=white"></a>
-</div>
-</td>
-</tr>
-<tr>
-<td width="50%">
-<h3 align="center">Rumble-Bot</h3>
-<div align="center">
-<p>An automation bot designed for a specific platform, focusing on API integration and state management. An exploration into creating reliable, long-running automated tasks.</p>
-<p>
-<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-</p>
-<a href="https://github.com/Testinfd/Rumble-Bot" target="_blank"><img src="https://img.shields.io/badge/View%20Code-181717?style=for-the-badge&logo=github&logoColor=white"></a>
-</div>
-</td>
-<td width="50%">
-<h3 align="center">Unified Media Downloader</h3>
-<div align="center">
-<p>A command-line tool providing a single interface for downloading media from various sources. The goal was to build a modular, extensible, and user-friendly utility.</p>
-<p>
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-</p>
-<a href="https://github.com/Testinfd/Unified-Media-Downloader-Tool" target="_blank"><img src="https://img.shields.io/badge/View%20Code-181717?style=for-the-badge&logo=github&logoColor=white"></a>
-</div>
-</td>
-</tr>
+  <tr>
+    <td width="60%" valign="top">
+      <h2>⚡ The Signal</h2>
+      <p>
+        I am a <strong>System Architect</strong> and <strong>Founder</strong> focused on building scalable, intelligent products with speed and precision.
+      </p>
+      <p>
+        I don't just write code; I architect systems. My background is non-linear by design—I prioritize <strong>high-velocity learning</strong> and <strong>shipping production-grade software</strong> over standard academic pacing.
+      </p>
+      <p>
+        <strong>Current Focus:</strong>
+      </p>
+      <ul>
+        <li>🚀 <strong>Product:</strong> Architecting <strong>Zenith</strong>, a chess platform using adaptive algorithms for player error profiling.</li>
+        <li>🔭 <strong>R&D:</strong> Automating <strong>Gravitational Wave Detection</strong> (LIGO) using Signal Processing.</li>
+        <li>📡 <strong>Creative:</strong> Building <strong>Cosmic Radio</strong> (Real-time sonification of NASA Space Weather data).</li>
+      </ul>
+    </td>
+    <td width="40%" valign="top">
+      <h2>📊 The Stack</h2>
+      <div align="center">
+        <img src="https://skillicons.dev/icons?i=python,cpp,ts,react,fastapi" alt="Core Stack" />
+        <br />
+        <img src="https://skillicons.dev/icons?i=pytorch,tensorflow,postgres,docker,git" alt="AI Stack" />
+      </div>
+      <br />
+      <div align="center">
+        <!-- UPDATE USERNAME HERE -->
+        <a href="https://github.com/r-baruah">
+          <img src="https://github-readme-stats.vercel.app/api?username=r-baruah&show_icons=true&theme=radical&count_private=true&hide_border=true&hide_title=true" alt="Ripuranjan's Stats" />
+        </a>
+      </div>
+    </td>
+  </tr>
 </table>
 
 ---
 
-## My Approach
+## 🛠️ Selected Projects (The Spikes)
 
--   **Strategic AI/ML Exploration:** I'm actively developing skills in agentic automation and ML systems to prepare for the next wave of technology. I am motivated by building practical experience now to lead future opportunities.
--   **Architecture-First Development:** I believe in planning the system before the code. This means clear dataflows, defined service boundaries, and thinking about the big picture from the start.
--   **The Pursuit of Efficiency:** I have a deep appreciation for elegant and performant solutions. I will happily refactor a codebase if it leads to a more efficient and correct system.
--   **Seeking Collaboration:** I'm actively participating in hackathons and looking to connect with smart, creative developers to build valuable and interesting projects.
+<table>
+  <tr>
+    <td width="50%">
+      <h3 align="center">♟️ Zenith Platform</h3>
+      <div align="center">
+        <p><strong>Founder | Adaptive Algorithms</strong></p>
+        <p>A chess training ecosystem focusing on <strong>player psychology</strong>. Unlike standard engines, Zenith creates a "Player Fingerprint" to identify recurring tactical blindness and generates personalized drills.</p>
+        <p>
+          <img src="https://img.shields.io/badge/React-Frontend-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+          <img src="https://img.shields.io/badge/Supabase-Backend-green?style=for-the-badge&logo=supabase" alt="Supabase"/>
+        </p>
+        <a href="https://github.com/r-baruah/zenith-public"><img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" alt="View"/></a>
+      </div>
+    </td>
+    <td width="50%">
+      <h3 align="center">🌌 LIGO Signal Labs</h3>
+      <div align="center">
+        <p><strong>R&D | Signal Processing</strong></p>
+        <p>An automated pipeline for detecting binary black hole mergers in noisy strain data. Utilizes <strong>Spectral Density Estimation</strong> and <strong>Bandpass Filtering</strong> to clean raw LIGO observatory data.</p>
+        <p>
+          <img src="https://img.shields.io/badge/Python-SciPy-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+          <img src="https://img.shields.io/badge/GWpy-Signal_Processing-orange?style=for-the-badge" alt="GWpy"/>
+        </p>
+        <a href="https://github.com/r-baruah/ligo-analysis"><img src="https://img.shields.io/badge/View_Research-181717?style=for-the-badge&logo=github&logoColor=white" alt="View"/></a>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3 align="center">📻 Cosmic Radio</h3>
+      <div align="center">
+        <p><strong>Creative Tech | Data Sonification</strong></p>
+        <p>A real-time "Space Weather" station. Ingests data from <strong>NASA DONKI</strong> (Solar Wind/Flares), sonifies the data into ambient drones, and uses an LLM "DJ" to announce incoming geomagnetic storms.</p>
+        <p>
+          <img src="https://img.shields.io/badge/OpenAI-TTS_Agent-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI"/>
+          <img src="https://img.shields.io/badge/NASA_API-Live_Stream-0B3D91?style=for-the-badge&logo=nasa&logoColor=white" alt="NASA"/>
+        </p>
+        <a href="https://github.com/r-baruah/cosmic-radio"><img src="https://img.shields.io/badge/View_Concept-181717?style=for-the-badge&logo=github&logoColor=white" alt="View"/></a>
+      </div>
+    </td>
+    <td width="50%">
+      <h3 align="center">🛡️ Distributed Bot Arch</h3>
+      <div align="center">
+        <p><strong>System Architecture | DevOps</strong></p>
+        <p>A resilient architectural template for high-load Telegram services. Features asynchronous queue management, fault tolerance, and copyright-resilient content delivery patterns.</p>
+        <p>
+          <img src="https://img.shields.io/badge/Docker-Microservices-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+          <img src="https://img.shields.io/badge/Telegram-Async_IO-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
+        </p>
+        <a href="https://github.com/r-baruah/bot-architecture-template"><img src="https://img.shields.io/badge/View_Architecture-181717?style=for-the-badge&logo=github&logoColor=white" alt="View"/></a>
+      </div>
+    </td>
+  </tr>
+</table>
 
----
+<br />
 
-## Principles
-
--   **Clarity over novelty** · **Minimal dependencies** · **Deterministic environments**
--   **Small, composable components** · **Honest scope** (no inflated claims)
--   **Consistent docs** (purpose → setup → example → license)
-
----
-
-## Contact
-- **Email (preferred):** ripuranjanbaruah@zohomail.in
-- **GitHub:** <https://github.com/Testinfd>
-- **Discord:** `@ripu0`
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=r-baruah&layout=compact&theme=radical&hide=html,css&hide_border=true" alt="Languages" />
+</div>
