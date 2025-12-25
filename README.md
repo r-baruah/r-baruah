@@ -9,7 +9,7 @@
     <a href="mailto:ripuranjanbaruah@zohomail.in"><img src="https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=zoho&logoColor=white" alt="Email"/></a>
     <a href="https://github.com/r-baruah"><img src="https://img.shields.io/badge/GitHub-Portfolio-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/></a>
     <!-- HIDE THIS BUTTON UNTIL YOU HAVE 5 SOLVED PROBLEMS -->
-    <a href="https://codeforces.com/profile/YOUR_USERNAME"><img src="https://img.shields.io/badge/Codeforces-Competitive-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codeforces"/></a>
+    <a href="https://codeforces.com/profile/R_Baruah"><img src="https://img.shields.io/badge/Codeforces-Competitive-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codeforces"/></a>
   </p>
 </div>
 
@@ -59,10 +59,10 @@
 <table>
   <tr>
     <td width="50%">
-      <h3 align="center">♟️ Zenith Platform</h3>
+      <h3 align="center">👾 Zenith Platform</h3>
       <div align="center">
         <p><strong>Founder | Adaptive Algorithms</strong></p>
-        <p>A chess training ecosystem focusing on <strong>player psychology</strong>. Unlike standard engines, Zenith creates a "Player Fingerprint" to identify recurring tactical blindness and generates personalized drills.</p>
+        <p> 🚧 Under Development 🚧 </p>
         <p>
           <img src="https://img.shields.io/badge/React-Frontend-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
           <img src="https://img.shields.io/badge/Supabase-Backend-green?style=for-the-badge&logo=supabase" alt="Supabase"/>
@@ -97,10 +97,10 @@
       </div>
     </td>
     <td width="50%">
-      <h3 align="center">🛡️ Distributed Bot Arch</h3>
+      <h3 align="center">🛡️ Distributed Arch</h3>
       <div align="center">
         <p><strong>System Architecture | DevOps</strong></p>
-        <p>A resilient architectural template for high-load Telegram services. Features asynchronous queue management, fault tolerance, and copyright-resilient content delivery patterns.</p>
+        <p>A resilient architectural template for high-load services. Features asynchronous queue management, fault tolerance, and copyright-resilient content delivery patterns.</p>
         <p>
           <img src="https://img.shields.io/badge/Docker-Microservices-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
           <img src="https://img.shields.io/badge/Telegram-Async_IO-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
