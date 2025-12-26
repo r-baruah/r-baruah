@@ -29,7 +29,7 @@
         <strong>Current Focus:</strong>
       </p>
       <ul>
-        <li>🚀 <strong>Product:</strong> Architecting <strong>Zenith</strong>, a chess platform using adaptive algorithms for player error profiling.</li>
+        <li>🚀 <strong>Product:</strong> Architecting <strong>Zenith</strong>, a platform using adaptive algorithms for player error profiling.</li>
         <li>🔭 <strong>R&D:</strong> Automating <strong>Gravitational Wave Detection</strong> (LIGO) using Signal Processing.</li>
         <li>📡 <strong>Creative:</strong> Building <strong>Cosmic Radio</strong> (Real-time sonification of NASA Space Weather data).</li>
       </ul>
