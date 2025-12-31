@@ -85,7 +85,7 @@
   </tr>
   <tr>
     <td width="50%">
-      <h3 align="center">📻 Cosmic Radio</h3>
+      <h3 align="center">🛰️ Intercept </h3>
       <div align="center">
         <p><strong>Creative Tech | Data Sonification</strong></p>
         <p>A real-time "Space Weather" station. Ingests data from <strong>NASA DONKI</strong> (Solar Wind/Flares), sonifies the data into ambient drones, and uses an LLM "DJ" to announce incoming geomagnetic storms.</p>
@@ -93,7 +93,7 @@
           <img src="https://img.shields.io/badge/OpenAI-TTS_Agent-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI"/>
           <img src="https://img.shields.io/badge/NASA_API-Live_Stream-0B3D91?style=for-the-badge&logo=nasa&logoColor=white" alt="NASA"/>
         </p>
-        <a href="https://github.com/r-baruah/cosmic-radio"><img src="https://img.shields.io/badge/View_Concept-181717?style=for-the-badge&logo=github&logoColor=white" alt="View"/></a>
+        <a href="https://github.com/r-baruah/INTERCEPT"><img src="https://img.shields.io/badge/View_Concept-181717?style=for-the-badge&logo=github&logoColor=white" alt="View"/></a>
       </div>
     </td>
     <td width="50%">
