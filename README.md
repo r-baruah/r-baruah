@@ -7,11 +7,12 @@ I operate under the **Ryzen Standard**: a philosophy of achieving research-grade
 
 ---
 
-### 🚀 Flagship Research: AstroZip
-**[AstroZip](https://github.com/r-baruah/AstroZip)** | Scientific Compression Codec
-*   **Metric:** Achieved **2.53x Lossless Compression** on HST CANDELS datasets at **~110 MB/s throughput** using **< 45MB peak heap memory** (Ryzen 5, 6-core).
-*   **Architecture:** Implemented a **Bimodal Selector** (1D-Difference vs. LOCO-I) that dynamically switches based on noise physics to guarantee 100% scientific purity in sparse fields.
-*   **Innovation:** Optimized bitstream packing for cache-line alignment, minimizing L1/L2 misses during real-time telemetry ingestion.
+### 🚀 Flagship Research: RTC-Core (Project Oort)
+**Project Lead.** Bimodal Resilient Telemetry Codec for high-BER satellite downlinks. *Targeting ADASS Systems Track.*
+*   **Metric:** 2.08–2.53x bandwidth reduction (vs 16-bit FITS) by trading Shannon coding efficiency (0.80x) for strict transmission resilience.
+*   **Architecture:** Bimodal adaptive routing (RAW_RICE vs LOCO-I/RLGR) switching based on physics-derived instrument noise thresholds (Poisson sky component).
+*   **Resilience:** Per-tile state isolation and 1-byte kP side-channels to isolate bit-flip corruption in degraded space-to-ground RF links.
+*   **Integrity:** Big-Endian bit-packing and CRC32 coverage across tile headers for FITS-compatible scientific telemetry.
 
 ### 🛠️ Core Systems
 
