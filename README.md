@@ -1,45 +1,95 @@
-# Ripuranjan Baruah
-**Developer | Researcher | [Gambits.in](https://gambits.in) (Stealth)**
+<div align="center">
 
-I develop systems for graphics, physics, and security. My work focuses on deterministic logic and architectures that prioritize algorithmic efficiency over brute-force compute.
+  <img src="github-header-banner.png" alt="Ripuranjan Baruah" width="100%">
 
-I operate under the **Ryzen Standard**: a philosophy of achieving research-grade results on consumer-grade hardware (Ryzen 5 5500U, 8GB RAM).
+  <br>
 
----
+  <b>Developer · Researcher · <a href="https://gambits.in">Gambits.in</a></b>
 
-### 🚀 Flagship Research: RTC-Core (Project Oort)
-**Project Lead.** Bimodal Resilient Telemetry Codec for high-BER satellite downlinks. *Targeting ADASS Systems Track.*
-*   **Metric:** 2.08–2.53x bandwidth reduction (vs 16-bit FITS) by trading Shannon coding efficiency (0.80x) for strict transmission resilience.
-*   **Architecture:** Bimodal adaptive routing (RAW_RICE vs LOCO-I/RLGR) switching based on physics-derived instrument noise thresholds (Poisson sky component).
-*   **Resilience:** Per-tile state isolation and 1-byte kP side-channels to isolate bit-flip corruption in degraded space-to-ground RF links.
-*   **Integrity:** Big-Endian bit-packing and CRC32 coverage across tile headers for FITS-compatible scientific telemetry.
+  <br><br>
 
-### 🛠️ Core Systems
+  <i>I build systems where the output has to be provable — not probable.</i>
+  <br>
+  <i>Different domains, same constraint: if it can't survive on 8GB of RAM and a deterministic guarantee, it doesn't ship.</i>
 
-**[SENTRY](https://github.com/r-baruah/SENTRY)** `Foundry` `Solidity` `TypeScript`
-**Project Lead.** Deterministic verification engine for smart contract exploits.
-*   **Verification:** Programmatically constructs executable **Solidity Test Harnesses** to verify AI-generated hypotheses, moving beyond stochastic auditing.
-*   **Infrastructure:** Developed an ephemeral **300ms Sandboxing Layer** using custom Foundry cheatcodes to resolve complex on-chain dependencies without state pollution.
-*   *Winner: Hack Space 2025 (Blockchain Track).*
+  <br><br>
 
-**[Exo-Checkmate](https://github.com/r-baruah/Exo-Checkmate)** `Python` `PyTorch` `SciPy`
-**Systems Lead (Team N-Body).** Physics-informed exoplanet discovery engine.
-*   **Pipeline:** Implemented **Hill Stability Criteria (Gladman, 1993)** and **Box Least Squares (BLS)** using optimized **NumPy vectorization** to prune candidates, ensuring predicted orbits are stable before classification.
-*   **Scientific Validity:** Integrated Quadratic Limb Darkening (ExoCTK physics) into the ML decision latent space.
+</div>
 
-**[Pyre Engine](https://github.com/Open-Source-Chandigarh/pyre)** `C++17` `OpenGL 4.5`
-**Open Source Contributor.** High-performance rendering engine.
-*   **Tooling & Hardening:** Integrated a real-time UI layer for scene manipulation and hardened the rendering pipeline against shadow indexing bugs and asset-loading failures.
-*   **Optimization:** Focused on **Zero-allocation render loops** and cache-friendly entity storage to maintain high frame-time stability on integrated graphics. (WoC 5.0).
+> **The Ryzen Standard** — Research-grade results on consumer-grade hardware (Ryzen 5 5500U, 8GB RAM).
+> Not because I have to. Because systems built under constraint are systems that actually work.
 
 ---
 
-### 🔭 Active Research & Strategy
-*   **Gambits.in (Stealth):** Developing independent infrastructure for regional chess excellence and strategic cognitive training.
-*   **TTV Dynamics:** Utilizing **Genetic Symbolic Regression (PySR/Julia)** to derive analytical laws for planetary perturbations from TESS data.
-*   **Chess:** 1800+ ELO (Blitz). Pattern recognition and positional strategy.
+## Flagship Research
+
+*Satellite telemetry compression under extreme hardware and transmission constraints.*
+
+### RTC-Core — Project Oort
+
+**Project Lead** · Bimodal Resilient Telemetry Codec for high-BER satellite downlinks · *In preparation for ADASS Systems Track*
+
+2.08–2.53x bandwidth reduction over 16-bit FITS, achieved by deliberately trading Shannon coding efficiency (0.80x) for strict transmission resilience — because a corrupted frame wastes more bandwidth than an inefficient one.
+
+<details>
+<summary><b>Architecture</b></summary>
+<br>
+
+**Bimodal Decision Logic:** Each tile's pixel residuals are evaluated against a physics-derived noise floor (Poisson sky component). Tiles where instrument/sky noise dominates route through RAW_RICE — resilient, tolerant of high bit-error rates. Tiles with structure-dominated signal use LOCO-I spatial prediction + RLGR entropy coding for higher compression.
+
+**Why Per-Tile Isolation:** A single bit-flip in an entropy-coded stream cascades into full-frame corruption. Tile-level state boundaries with 1-byte kP side-channels ensure corruption is contained to a single tile — the rest of the frame remains scientifically valid. This is a deliberate architectural choice: sacrifice global coding efficiency for failure isolation.
+
+| Mode | Compression | BER Tolerance | When Used |
+|---|---|---|---|
+| RAW_RICE | Moderate (~1.5–2x) | High | Noisy tiles, degraded RF links |
+| LOCO-I / RLGR | High (~2.5–3x) | Low | Clean tiles, stable conditions |
+| **Bimodal (adaptive)** | **2.08–2.53x** | **High** | **Mixed — production target** |
+
+</details>
 
 ---
 
-### 📬 Connect
-[Email](mailto:ripuranjanbaruah@zohomail.in) • [Codeforces](https://codeforces.com/profile/R_Baruah) • [LinkedIn (Inactive)]
+## Core Systems
+
+*Verification engines, physics pipelines, and rendering infrastructure.*
+
+<br>
+
+**SENTRY** · `Foundry` `Solidity` `TypeScript` · [Repo](https://github.com/r-baruah/SENTRY) · [Demo](https://youtu.be/gyUxxnAI25I)
+**Project Lead** — Deterministic verification engine for smart contract exploits.
+
+Constructs executable Solidity Test Harnesses to verify AI-generated exploit hypotheses — moving verification from stochastic auditing to deterministic proof. Built on an ephemeral **300ms Sandboxing Layer** using custom Foundry cheatcodes to resolve on-chain dependencies without state pollution.
+
+*Winner — Hack Space 2025, Blockchain Track.*
+
+<br>
+
+**Exo-Checkmate** · `Python` `PyTorch` `SciPy` · [Repo](https://github.com/r-baruah/Exo-Checkmate)
+**Systems Lead (Team N-Body)** — Physics-informed exoplanet discovery engine.
+
+Implemented **Hill Stability Criteria (Gladman, 1993)** and Box Least Squares via optimized NumPy vectorization to prune unstable orbital candidates before classification. Integrated Quadratic Limb Darkening (ExoCTK physics) into the ML decision latent space for scientific validity.
+
+<br>
+
+**Pyre Engine** · `C++17` `OpenGL 4.5` · [Repo](https://github.com/Open-Source-Chandigarh/pyre)
+**Open Source Contributor (WoC 5.0)** — High-performance rendering engine.
+
+Hardened the rendering pipeline against shadow indexing failures and integrated a real-time UI layer for scene manipulation. Focused on **zero-allocation render loops** and cache-friendly entity storage for frame-time stability on integrated graphics.
+
+---
+
+## Active
+
+**Gambits.in** — Infrastructure for competitive chess development, born from a regional initiative that taught me more about systems design than any codebase.
+
+**TTV Dynamics** — Genetic Symbolic Regression (PySR/Julia) to derive analytical perturbation laws from TESS transit timing data.
+
+**Chess** — 1800+ Blitz. The only domain where I trust intuition over proof.
+
+---
+
+<div align="center">
+
+[Email](mailto:ripuranjanbaruah@zohomail.in) · [Codeforces](https://codeforces.com/profile/R_Baruah)
+
+</div>
