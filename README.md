@@ -84,7 +84,7 @@ Hardened the rendering pipeline against shadow indexing failures and integrated 
 
 **TTV Dynamics** — Genetic Symbolic Regression (PySR/Julia) to derive analytical perturbation laws from TESS transit timing data.
 
-**Chess** — 1800+ Blitz. The only domain where I trust intuition over proof.
+**Chess** — [1800+ Blitz](https://lichess.org/@/Ripu01). The only domain where I trust intuition over proof.
 
 ---
 
