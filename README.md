@@ -4,7 +4,7 @@
 
   <br>
 
-  <b>Developer · Researcher · <a href="https://gambits.in">Gambits.in</a></b>
+  <a href="https://gambits.in"><b>Gambits.in</b></a>
 
   <br><br>
 
