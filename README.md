@@ -1,95 +1,126 @@
 <div align="center">
 
-  <img src="github-header-banner.png" alt="Ripuranjan Baruah" width="100%">
-
-  <br>
-
-  <a href="https://gambits.in"><b>Gambits.in</b></a>
-
-  <br><br>
-
-  <i>I build systems where the output has to be provable — not probable.</i>
-  <br>
-  <i>Different domains, same constraint: if it can't survive on 8GB of RAM and a deterministic guarantee, it doesn't ship.</i>
-
-  <br><br>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
+    <img alt="Ripuranjan Baruah — Founder, Researcher" src="assets/banner-dark.svg" width="100%">
+  </picture>
 
 </div>
 
-> **The Ryzen Standard** — Research-grade results on consumer-grade hardware (Ryzen 5 5500U, 8GB RAM).
-> Not because I have to. Because systems built under constraint are systems that actually work.
+I build things that keep working after something breaks.
+
+> Everything I ship is developed and benchmarked on a **Ryzen 5 5500U with 8 GB RAM**. If it can't hold up under tight memory and real-world failure conditions, it isn't finished.
 
 ---
 
-## Flagship Research
+## Research
 
-*Satellite telemetry compression under extreme hardware and transmission constraints.*
+### FERRITE — Lossless Image Compression for Space Missions
 
-### RTC-Core — Project Oort
-
-**Project Lead** · Bimodal Resilient Telemetry Codec for high-BER satellite downlinks · *In preparation for ADASS Systems Track*
-
-2.08–2.53x bandwidth reduction over 16-bit FITS, achieved by deliberately trading Shannon coding efficiency (0.80x) for strict transmission resilience — because a corrupted frame wastes more bandwidth than an inefficient one.
-
-<details>
-<summary><b>Architecture</b></summary>
+<details open>
+<summary><i>High-reliability data compression designed for orbital telescope downlinks.</i></summary>
 <br>
 
-**Bimodal Decision Logic:** Each tile's pixel residuals are evaluated against a physics-derived noise floor (Poisson sky component). Tiles where instrument/sky noise dominates route through RAW_RICE — resilient, tolerant of high bit-error rates. Tiles with structure-dominated signal use LOCO-I spatial prediction + RLGR entropy coding for higher compression.
+Space telescopes generate ~16.8 MB of 16-bit integer data per exposure, but downlink contact windows last only minutes. Standard Rice compressors (such as CFITSIO's fpack) stream data as a single continuous bitstream, where a single bit-flip desynchronizes the decoder and destroys the remainder of the frame.
 
-**Why Per-Tile Isolation:** A single bit-flip in an entropy-coded stream cascades into full-frame corruption. Tile-level state boundaries with 1-byte kP side-channels ensure corruption is contained to a single tile — the rest of the frame remains scientifically valid. This is a deliberate architectural choice: sacrifice global coding efficiency for failure isolation.
+FERRITE partitions frames into autonomous 64×64 pixel tiles, each protected by its own CRC-16 integrity tag. A bit error isolates to that tile while the remaining frame decodes cleanly. The entire pipeline uses integer arithmetic (Newton-Raphson integer square root, binary de Bruijn log₂) with zero floating-point operations, built for radiation-hardened flight processors without FPUs like the RAD750 and LEON3.
 
-| Mode | Compression | BER Tolerance | When Used |
-|---|---|---|---|
-| RAW_RICE | Moderate (~1.5–2x) | High | Noisy tiles, degraded RF links |
-| LOCO-I / RLGR | High (~2.5–3x) | Low | Clean tiles, stable conditions |
-| **Bimodal (adaptive)** | **2.08–2.53x** | **High** | **Mixed — production target** |
+<details>
+<summary><b>Benchmark Results (HST WFC3/UVIS vs fpack)</b></summary>
+<br>
+
+| Metric | FERRITE | fpack (lossless) |
+|---|---|---|
+| Mean compression ratio | **2.40×** | 2.41× (within 0.4%) |
+| Science data survival @ BER 10⁻⁶ | **98.4%** | ≈ 0% |
+| Science data survival @ BER 10⁻⁵ | **70.3%** | ≈ 0% |
+| Encode / decode throughput | **75 / 203 MB/s** (OpenMP, 50-trial mean) | — |
+
+</details>
+
+*Abstract submitted to ADASS 2026 (Perth), in review. Code releases publicly under GPL upon paper acceptance.*
+
+</details>
+
+<br>
+
+### [HeapGlass](https://github.com/r-baruah/HeapGlass) — Live Memory Diagnostics
+
+<details open>
+<summary><i>Watch a running program's heap, catch a leak or a double-free as it happens.</i></summary>
+<br>
+
+HeapGlass attaches to a C or C++ program with an `LD_PRELOAD` interceptor, tracks every allocation and free, and renders them live to a 256×256 grid (65,536 cells). Leaks show up as regions that deepen toward red as blocks age, and a double-free flashes on the grid instead of crashing the target. 1.23% overhead on the demo workload.
+
+<details>
+<summary><b>Measured numbers</b></summary>
+<br>
+
+| Measurement | Value |
+|---|---|
+| Interceptor overhead (1 Hz live ticker, demo workload) | 1.23% |
+| `demo_leaky` @ 30 MB/s, killed at 4 s | 42,817 allocs · 212.6 MB live · Ghost window 4.2 s |
+| `demo_leaky` @ 25 MB/s, killed at 3 s | 26,834 allocs · 133.1 MB live · Ghost window 3.1 s |
+| `demo_fixed`, clean 45 s run | 326,292 allocs · 7.2 MB plateau (1,200 blocks) · Ghost window 45.1 s |
+| Relay self-test (`--smoke`) | exit 0, grid locked, 6 offenders caught |
+| Grid geometry | 256×256 cells, 16 MiB min span, 8 GiB default ceiling |
+
+</details>
 
 </details>
 
 ---
 
-## Core Systems
+## The Absurd One
 
-*Verification engines, physics pipelines, and rendering infrastructure.*
+### [Kepler-64](https://github.com/r-baruah/kepler-64) — Differentiable Astrophysical Chess Engine
 
+<details open>
+<summary><i>What happens when chess positions are evaluated by gravitational physics instead of heuristics?</i> · <a href="https://r-baruah.github.io/kepler-64/">Live Observatory</a></summary>
 <br>
 
-**SENTRY** · `Foundry` `Solidity` `TypeScript` · [Repo](https://github.com/r-baruah/SENTRY) · [Demo](https://youtu.be/gyUxxnAI25I)
-**Project Lead** — Deterministic verification engine for smart contract exploits.
+Kepler-64 replaces conventional piece-square evaluation tables with continuous gravitational physics. The board is a 2D discrete spacetime lattice where pieces act as point masses. Position evaluation computes Plummer gravitational potential fields ($\Phi$), King tidal Hessian stress tensors ($\mathbf{A} = \nabla\nabla\Phi$), and astronomical Roche disruption limits ($\eta > \rho_{\text{roche}}$). Physical constants ($G, \varepsilon, c, \rho$) are differentiable leaves in JAX, trained against Grandmaster games via gradient descent. Captured pieces transfer 80% of their mass to their captor, creating localized supermassive pieces that warp board gravity. The whole thing ships with a custom 60 FPS Canvas observatory rendering real-time potential streamlines, force vectors, and move rankings.
 
-Constructs executable Solidity Test Harnesses to verify AI-generated exploit hypotheses — moving verification from stochastic auditing to deterministic proof. Built on an ephemeral **300ms Sandboxing Layer** using custom Foundry cheatcodes to resolve on-chain dependencies without state pollution.
+It plays weak chess. That was never the point.
 
-*Winner — Hack Space 2025, Blockchain Track.*
-
-<br>
-
-**Exo-Checkmate** · `Python` `PyTorch` `SciPy` · [Repo](https://github.com/r-baruah/Exo-Checkmate)
-**Systems Lead (Team N-Body)** — Physics-informed exoplanet discovery engine.
-
-Implemented **Hill Stability Criteria (Gladman, 1993)** and Box Least Squares via optimized NumPy vectorization to prune unstable orbital candidates before classification. Integrated Quadratic Limb Darkening (ExoCTK physics) into the ML decision latent space for scientific validity.
-
-<br>
-
-**Pyre Engine** · `C++17` `OpenGL 4.5` · [Repo](https://github.com/Open-Source-Chandigarh/pyre)
-**Open Source Contributor (WoC 5.0)** — High-performance rendering engine.
-
-Hardened the rendering pipeline against shadow indexing failures and integrated a real-time UI layer for scene manipulation. Focused on **zero-allocation render loops** and cache-friendly entity storage for frame-time stability on integrated graphics.
+</details>
 
 ---
 
-## Active
+## Ventures
 
-**Gambits.in** — Infrastructure for competitive chess development, born from a regional initiative that taught me more about systems design than any codebase.
+### [Gambits.in](https://gambits.in) — Chess Training Platform
 
-**TTV Dynamics** — Genetic Symbolic Regression (PySR/Julia) to derive analytical perturbation laws from TESS transit timing data.
+<details open>
+<summary><i>Automated blunder diagnosis and deliberate practice for competitive players (1000–2200 Elo).</i></summary>
+<br>
 
-**Chess** — [1800+ Blitz](https://lichess.org/@/Ripu01). The only domain where I trust intuition over proof.
+Most online chess players hit a multi-year rating plateau from unstructured blitz games and random puzzle grinding. Gambits connects to Lichess and Chess.com match histories, isolates recurring tactical blind spots, and generates a structured 15–30 minute daily training regimen using spaced repetition and sparring drills.
+
+Bootstrapped, small team. MVP shipping soon.
+
+</details>
+
+---
+
+## Selected Projects
+
+- **[SENTRY](https://github.com/r-baruah/SENTRY)** (`Foundry`, `Solidity`, `TypeScript`) — Test harness verifying smart contract exploit hypotheses in an isolated sandbox. Winner of Hack Space 2025 (Blockchain Track).
+- **[Exo-Checkmate](https://github.com/N-Body-Labs/Exo-Checkmate)** (`Python`, `PyTorch`, `SciPy`) — Physics-informed exoplanet candidate screening using Hill stability criteria and quadratic limb darkening. Hosted under [N-Body Labs](https://github.com/N-Body-Labs).
+- **[Pyre Engine](https://github.com/Open-Source-Chandigarh/pyre)** (`C++17`, `OpenGL 4.5`) — Contributed to rendering pipeline hardening and viewport UI tools during WoC 5.0.
+
+---
+
+## Interests
+
+- **Chess** — [1800+ Blitz on Lichess](https://lichess.org/@/Ripu01). The only domain where I trust intuition over computation.
+- **Guitar** — Committed enough to own one, not enough to fix the missing E string.
 
 ---
 
 <div align="center">
 
-[Email](mailto:ripuranjanbaruah@zohomail.in) · [Codeforces](https://codeforces.com/profile/R_Baruah)
+[Email](mailto:ripuranjanbaruah@zohomail.in) · [Gambits.in](https://gambits.in) · [Lichess](https://lichess.org/@/Ripu01) · [Codeforces](https://codeforces.com/profile/R_Baruah) · [N-Body Labs](https://github.com/N-Body-Labs)
 
 </div>
