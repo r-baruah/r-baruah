@@ -1,16 +1,16 @@
 <div align="center">
 
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark-v2.svg">
     <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-    <img alt="Ripuranjan Baruah — Founder, Researcher" src="assets/banner-dark.svg" width="100%">
+    <img alt="Ripuranjan Baruah — Founder, Researcher" src="assets/banner-dark-v2.svg" width="100%">
   </picture>
 
 </div>
 
 I build things that keep working after something breaks.
 
-> Everything I ship is developed and benchmarked on a **Ryzen 5 5500U with 8 GB RAM**. If it can't hold up under tight memory and real-world failure conditions, it isn't finished.
+> Everything I ship is developed and benchmarked on a **Ryzen 5 5500U (6C/12T) with 8 GB RAM**. If it can't hold up under tight memory and real-world failure conditions, it isn't finished.
 
 ---
 
@@ -37,9 +37,11 @@ FERRITE partitions frames into autonomous 64×64 pixel tiles, each protected by 
 | Science data survival @ BER 10⁻⁵ | **70.3%** | ≈ 0% |
 | Encode / decode throughput | **75 / 203 MB/s** (OpenMP, 50-trial mean) | — |
 
+*fpack survival is effectively zero by construction: it compresses the frame as one continuous bitstream with no per-tile resync, so a single bit error desynchronizes the decoder and every subsequent pixel is lost.*
+
 </details>
 
-*Abstract submitted to ADASS 2026 (Perth), in review. Code releases publicly under GPL upon paper acceptance.*
+*Abstract submitted to [ADASS 2026](https://pretalx.adass.org/adass2026/talk/review/QMW3EATPQ77FNS7YX3C7ZV7S7AYJBHUJ) (Perth), in review. Code releases publicly under GPL upon paper acceptance.*
 
 </details>
 
@@ -51,11 +53,13 @@ FERRITE partitions frames into autonomous 64×64 pixel tiles, each protected by 
 <summary><i>Watch a running program's heap, catch a leak or a double-free as it happens.</i></summary>
 <br>
 
-HeapGlass attaches to a C or C++ program with an `LD_PRELOAD` interceptor, tracks every allocation and free, and renders them live to a 256×256 grid (65,536 cells). Leaks show up as regions that deepen toward red as blocks age, and a double-free flashes on the grid instead of crashing the target. 1.23% overhead on the demo workload.
+HeapGlass attaches to a C or C++ program with an `LD_PRELOAD` interceptor, tracks every allocation and free, and renders them live to a 256×256 grid (65,536 cells). Leaks show up as regions that deepen toward red as blocks age, and a double-free flashes on the grid instead of crashing the target.
 
 <details>
 <summary><b>Measured numbers</b></summary>
 <br>
+
+*"Ghost window" = the trailing span of wall-clock time a freed block stays visible before aging off the grid.*
 
 | Measurement | Value |
 |---|---|
@@ -72,15 +76,13 @@ HeapGlass attaches to a C or C++ program with an `LD_PRELOAD` interceptor, track
 
 ---
 
-## The Absurd One
-
 ### [Kepler-64](https://github.com/r-baruah/kepler-64) — Differentiable Astrophysical Chess Engine
 
 <details open>
-<summary><i>What happens when chess positions are evaluated by gravitational physics instead of heuristics?</i> · <a href="https://r-baruah.github.io/kepler-64/">Live Observatory</a></summary>
+<summary><i>The absurd one: what happens when chess positions are evaluated by gravitational physics instead of heuristics?</i> · <a href="https://r-baruah.github.io/kepler-64/">Live Observatory</a></summary>
 <br>
 
-Kepler-64 replaces conventional piece-square evaluation tables with continuous gravitational physics. The board is a 2D discrete spacetime lattice where pieces act as point masses. Position evaluation computes Plummer gravitational potential fields ($\Phi$), King tidal Hessian stress tensors ($\mathbf{A} = \nabla\nabla\Phi$), and astronomical Roche disruption limits ($\eta > \rho_{\text{roche}}$). Physical constants ($G, \varepsilon, c, \rho$) are differentiable leaves in JAX, trained against Grandmaster games via gradient descent. Captured pieces transfer 80% of their mass to their captor, creating localized supermassive pieces that warp board gravity. The whole thing ships with a custom 60 FPS Canvas observatory rendering real-time potential streamlines, force vectors, and move rankings.
+Kepler-64 replaces conventional piece-square evaluation tables with continuous gravitational physics. The board is a 2D discrete spacetime lattice where pieces act as point masses. Position evaluation computes Plummer gravitational potential fields, King tidal Hessian stress tensors, and astronomical Roche disruption limits. Physical constants (G, softening length, speed of light, Roche threshold) are differentiable leaves in JAX, trained against Grandmaster games via gradient descent. Captured pieces transfer 80% of their mass to their captor, creating localized supermassive pieces that warp board gravity. The whole thing ships with a custom 60 FPS Canvas observatory rendering real-time potential streamlines, force vectors, and move rankings.
 
 It plays weak chess. That was never the point.
 
