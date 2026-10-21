@@ -1,126 +1,142 @@
 <div align="center">
 
+  <a href="https://ripuranjan.com">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark-v2.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-    <img alt="Ripuranjan Baruah — Founder, Researcher" src="assets/banner-dark-v2.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-plates-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-plates-light.png">
+    <img alt="Ripuranjan Baruah. Founder · Independent researcher." src="assets/banner-plates-light.png" width="100%">
   </picture>
+  </a>
 
 </div>
 
-Following curiosity and figuring things out by building. Right now, that's split between space applications, bootstrapping a chess platform, and exploring hard, unconventional problems.
+Founder of [Gambits](https://gambits.in) · independent researcher in space imaging and orbital tracking. The full record, with live figures and notes, is at **[ripuranjan.com](https://ripuranjan.com)**.
+
+**Now and next**
+
+- **Gambits** · launching November 2026, free during early access.
+- **FERRITE** · accepted for oral presentation, ADASS XXXVI (2026). Preprint and code to follow.
+- **PHOTON-3D** · code release, October 2026.
+- **RADiANT** · in design.
+- **Ahead** · a second venture, larger in scope. In preparation.
 
 ---
 
-## Research
+### [Gambits](https://gambits.in)
 
-### FERRITE — Lossless Image Compression for Space Missions
+*A chess trainer that studies your own games.*
 
-> **Accepted for Oral Presentation at ADASS 2026 (Perth)**  
-> *Astronomical Data Analysis Software and Systems XXXVI*
+Gambits reads your games from Lichess or Chess.com, finds the mistakes you keep repeating, and builds a short daily practice around them. Your Skill Map only changes when you play real games, never from practising in the app. Every score shows the moves behind it.
 
-Space telescopes generate ~16.8 MB of 16-bit integer data per exposure, but downlink contact windows last only minutes. CFITSIO's fpack (the NASA community standard) streams data as a single continuous bitstream, where a single bit-flip desynchronizes the Rice decoder and destroys the remainder of the frame.
+Web and Android · bootstrapped, team of two.
 
-FERRITE partitions frames into autonomous 64×64 pixel tiles, each protected by its own CRC-16 integrity tag. A bit error isolates strictly to that tile while the rest of the frame decodes cleanly. The entire pipeline uses integer-only arithmetic (Newton-Raphson integer square root, binary de Bruijn log₂) with zero floating-point operations, built specifically for radiation-hardened flight processors without FPUs like the RAD750 and LEON3.
+---
 
-Tested against real Hubble Space Telescope (HST WFC3/UVIS) science frames, FERRITE compresses tighter than NASA's fpack (2.425× vs 2.410×) while surviving channel noise that destroys continuous streams.
+### FERRITE
+
+*Lossless image compression for space telescopes, built so one corrupted tile doesn't cost the frame.*
+
+> **Accepted for oral presentation, ADASS XXXVI (2026)**
+> *FERRITE: A Fault-Error Resilient Rice Integer Tile Encoder for Orbital Science Imaging*
+
+Science frames from orbit are compressed before they are sent down, and a few flipped bits can make a compressed file unreadable. FERRITE splits each frame into tiles that carry their own checks, so damage is caught, marked and contained while everything else decodes exactly. Rewritten in 2026 as a C library with a written file format, it needs no floating-point unit and gives identical results on any processor.
 
 <details>
-<summary><b>Benchmark Results (HST WFC3/UVIS calibrated science vs NASA fpack)</b></summary>
+<summary><b>How it works</b></summary>
 <br>
 
-| Metric | FERRITE v2.0 | NASA fpack (lossless) | Margin / Result |
-|---|---|---|---|
-| **Mean compression ratio (HST WFC3)** | **2.425×** | 2.410× | **FERRITE +0.015×** |
-| **Science data survival @ BER 10⁻⁶** | **98.44%** | 0.00% (Total desync) | **+98.44%** |
-| **Science data survival @ BER 10⁻⁵** | **70.31%** | 0.00% (Total desync) | **+70.31%** |
-| **Lost-to-framing errors** | **0 across all regimes** | Complete frame loss | Single-tile blast radius ($\le 1$) |
-| **Encode / decode throughput** | **156.9 / 291.7 MB/s** | Single-threaded | Multi-core OpenMP engine |
-| **Photometric completeness** | **99.95%** | 100% (when uncorrupted) | 0.0000 ADU residual bias |
-
-*fpack survival is zero by construction in noisy channels: it compresses the frame as one continuous bitstream without per-tile resynchronization, so a single bit-flip permanently desynchronizes the Rice decoder.*
+- Each frame is cut into tiles, 64 × 64 pixels by default. Every tile picks the best of eight predictors, including new ones suited to sky background, and is coded on its own.
+- Every chunk and every chunk header carries a CRC-32C check. After damage, decoding resumes at the next intact chunk.
+- The image description repeats every 64 tiles, and the FITS headers are stored at both ends of the file. Whole multi-extension files are rebuilt byte for byte.
+- Lost pixels are set to the FITS blank value and listed in a separate mask, so they can never pass for real data.
+- In multi-read infrared exposures, each read can be predicted from the first one, only in tiles where that saves at least 10%.
+- An optional error-bounded mode guarantees a maximum error per pixel. At a maximum error of 1, files shrink by about a third and noise rises by 2–3%.
 
 </details>
 
-*Paper accepted for oral presentation at ADASS 2026 (Perth). Code and benchmark harness will release under GPL alongside the conference proceedings.*
-
----
-
-## Ventures
-
-### [Gambits.in](https://gambits.in) — Chess Training Platform
-
-*Turns recurring match blunders into a 15-minute daily training routine (1000–2200 Elo).*
-
-Most online chess players hit a multi-year rating plateau from unstructured blitz games and random puzzle grinding. Gambits connects to Lichess and Chess.com match histories, isolates recurring tactical blind spots, and generates a structured daily training regimen using spaced repetition and sparring drills.
-
-Bootstrapped, small team. Beta launching soon.
-
----
-
-## Explorations & Systems
-
-### [HeapGlass](https://github.com/r-baruah/HeapGlass) — Live Memory Diagnostics
-
-*Watch a running program's heap, catch a leak or a double-free as it happens.*
-
-HeapGlass attaches to a C or C++ program with an `LD_PRELOAD` interceptor, tracks every allocation and free, and renders them live to a 256×256 grid (65,536 cells). Leaks show up as regions that deepen toward red as blocks age, and a double-free flashes on the grid instead of crashing the target.
-
 <details>
-<summary><b>Measured numbers</b></summary>
+<summary><b>Measured results (raw Hubble data)</b></summary>
 <br>
 
-*"Ghost window" = the trailing span of wall-clock time a freed block stays visible before aging off the grid.*
+| File | Original | fpack | FERRITE | Smaller by |
+|---|---|---|---|---|
+| ACS, crowded field | 34.34 MB | 16.82 MB | 14.65 MB | 12.9% |
+| ACS, sparse field | 34.34 MB | 9.83 MB | 8.58 MB | 12.7% |
+| ACS, mixed field | 34.34 MB | 11.76 MB | 9.95 MB | 15.4% |
+| WFC3/UVIS, held out | 34.89 MB | 11.12 MB | 9.76 MB | 12.2% |
+| WFC3/IR, 8 reads, held out | 17.02 MB | 12.83 MB | 7.48 MB | 41.7% |
 
-| Measurement | Value |
-|---|---|
-| Interceptor overhead (1 Hz live ticker, demo workload) | 1.23% |
-| `demo_leaky` @ 30 MB/s, killed at 4 s | 42,817 allocs · 212.6 MB live · Ghost window 4.2 s |
-| `demo_leaky` @ 25 MB/s, killed at 3 s | 26,834 allocs · 133.1 MB live · Ghost window 3.1 s |
-| `demo_fixed`, clean 45 s run | 326,292 allocs · 7.2 MB plateau (1,200 blocks) · Ghost window 45.1 s |
-| Relay self-test (`--smoke`) | exit 0, grid locked, 6 offenders caught |
-| Grid geometry | 256×256 cells, 16 MiB min span, 8 GiB default ceiling |
+"Held out" files were never used to tune the design. On single images, FERRITE matches JPEG-XL lossless in size and is the smallest of all codecs tested on both held-out images.
+
+**Under damage**, on the same ACS file:
+
+| Damage | FERRITE | fpack |
+|---|---|---|
+| 1 flipped bit in pixel data | 0.02% of pixels lost, all marked | 423 pixels wrong, no warning |
+| Start of file destroyed (40 bytes) | Nothing lost, backup copy used | — |
+| 1 flipped bit in a header or the tile index | — | Whole file rejected |
+
+In every damage test, the output was a valid FITS file, every loss was marked, and no pixel was wrong without a mark.
+
+**Limits.** Encoding is 3 to 11 times slower than fpack, on one core. Tested so far on five Hubble files from three instruments, with no ground-based or small-satellite data yet.
+
+</details>
+
+**Also in research: RADiANT** *(in design).* Separating radio interference from signal on GPUs as telescope and radar data streams in, with a 40 Gbps target, before anything is written to disk.
+
+---
+
+### PHOTON-3D
+
+*The 3D shape and spin of a satellite or rocket body, recovered from a single flickering pixel.*
+
+A ground telescope sees an object in orbit as one point of light, whose brightness changes as it tumbles. PHOTON-3D works backwards from that light curve to the object's shape and spin axis. It renders the light a candidate shape would reflect, and adjusts the shape and spin by gradient descent until the two curves match, in place of sampling methods that take hours per object.
+
+<details>
+<summary><b>Measured results</b></summary>
+<br>
+
+| Check | Shape overlap (IoU) | Spin axis error |
+|---|---|---|
+| Synthetic, single pass | 0.999 | 0.01° |
+| Synthetic, multi pass | 0.999 | 0.06° |
+
+On real data from the MMT survey, for an Ariane 5 upper stage: spin period within 5.0%, and a length-to-width ratio of 1.30 against the true 1.20.
 
 </details>
 
 ---
 
-### [Kepler-64](https://github.com/r-baruah/kepler-64) `[the absurd one]` — Differentiable Astrophysical Chess Engine
+### [Kepler-64](https://github.com/r-baruah/kepler-64)
 
-*What happens when chess positions are evaluated by continuous gravitational physics instead of heuristics? · [Live Observatory](https://r-baruah.github.io/kepler-64/)*
+*We gave the universe the rules of the game, and let it figure out how to play.*
 
-Kepler-64 replaces conventional piece-square evaluation tables with continuous gravitational physics. The board is a 2D discrete spacetime lattice where pieces act as point masses. Position evaluation computes Plummer gravitational potential fields, King tidal Hessian stress tensors, and astronomical Roche disruption limits. Physical constants (G, softening length, speed of light, Roche threshold) are differentiable leaves in JAX, trained against Grandmaster games via gradient descent. Captured pieces transfer 80% of their mass to their captor, creating localized supermassive pieces that warp board gravity. The whole thing ships with a custom 60 FPS Canvas observatory rendering real-time potential streamlines, force vectors, and move rankings.
+A chess engine with no chess strategy written into it. It is given the rules of chess and a small set of physical laws, and learns the rest through self-play, tuning seventeen constants of its universe by gradient descent. [Live observatory](https://r-baruah.github.io/kepler-64/).
 
 It plays weak chess. That was never the point.
 
 ---
 
-### Other Explorations
+### Record
 
-- **[Exo-Checkmate](https://github.com/N-Body-Labs/Exo-Checkmate)** (`Python`, `PyTorch`) — Screening exoplanet candidates using orbital stability physics and telescope transit light curves. Hosted under [N-Body Labs](https://github.com/N-Body-Labs).
-- **[SENTRY](https://github.com/r-baruah/SENTRY)** (`Solidity`, `TypeScript`) — Adversarial exploit verification sandbox for smart contracts (Hack Space 2025 winner).
-- **[Pyre Engine](https://github.com/Open-Source-Chandigarh/pyre)** (`C++17`, `OpenGL 4.5`) — Real-time graphics rendering architecture and viewport pipeline.
+- **ADASS XXXVI (2026).** Accepted for oral presentation: *FERRITE*.
+- **Winter of Code 2025–26, IIIT Kalyani.** Selected through the proposal round; contributed to [Pyre](https://github.com/Open-Source-Chandigarh/pyre), Open Source Chandigarh (Feb–Mar 2026).
+- **Hack Space 2025.** Winner, with [SENTRY](https://github.com/r-baruah/SENTRY).
 
----
+### Also
 
-## Publications & Recognition
-
-- **ADASS 2026** (Perth, Australia) — *Accepted for Oral Presentation:* **"FERRITE: A Fault-Error Resilient Rice Integer Tile Encoder for Orbital Science Imaging"** (To appear in *ASP Conference Series*).
-- **Hack Space 2025** — Winner, Blockchain Track ([SENTRY](https://github.com/r-baruah/SENTRY)).
-
----
-
-## Interests
-
-- **Chess** — [1800+ Blitz on Lichess](https://lichess.org/@/Ripu01). The only domain where I trust intuition over computation.
-- **Guitar** — Committed enough to own one, not enough to fix the missing E string.
+- [HeapGlass](https://github.com/r-baruah/HeapGlass): watch a running C/C++ program's heap live. Leaks redden as they age, and double-frees flash instead of crashing. 1.23% overhead. Hackathon build.
+- Chess: 1800 blitz on [Lichess](https://lichess.org/@/Ripu01), before a long break.
+- Guitar: committed enough to own one, not enough to fix the missing E string.
 
 ---
 
 <div align="center">
 
-Open to research collaborations and hard problems.
+For research, collaboration, or what comes next: **[ripuranjanbaruah@zohomail.in](mailto:ripuranjanbaruah@zohomail.in)**
 
-[Email](mailto:ripuranjanbaruah@zohomail.in) · [Gambits.in](https://gambits.in) · [Lichess](https://lichess.org/@/Ripu01) · [Codeforces](https://codeforces.com/profile/R_Baruah) · [N-Body Labs](https://github.com/N-Body-Labs)
+[ripuranjan.com](https://ripuranjan.com) · [Notes](https://ripuranjan.com/notes/) · [Gambits](https://gambits.in)
+
+<sub>Banner photograph: Diana Juncher/ESO, CC BY 4.0.</sub>
 
 </div>
