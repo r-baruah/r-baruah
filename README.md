@@ -135,7 +135,7 @@ It plays weak chess. That was never the point.
 
 For research, collaboration, or what comes next: **[ripuranjanbaruah@zohomail.in](mailto:ripuranjanbaruah@zohomail.in)**
 
-[ripuranjan.com](https://ripuranjan.com) · [Notes](https://ripuranjan.com/notes/) · [Gambits](https://gambits.in)
+[ripuranjan.com](https://ripuranjan.com) · [Notes](https://ripuranjan.com/notes/) · [Gambits](https://gambits.in) · [ORCID](https://orcid.org/0009-0000-3698-9699)
 
 <sub>Banner photograph: Diana Juncher/ESO, CC BY 4.0.</sub>
 
